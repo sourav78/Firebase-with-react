@@ -5,7 +5,6 @@ import '../App.css'
 
 const Values = ({ item }) => {
 
-    
     const [updateItem, setUpdateItem] = useState(item.val);
     const [saveEdit, setSaveEdit] = useState(true)
 
@@ -35,7 +34,7 @@ const Values = ({ item }) => {
                     className='itemInp'
                 />
                 <button className={saveEdit ? "btns" : "btns upBtn"} onClick={() => handleUpdate(item.id, updateItem)}>
-                    {saveEdit ? "Edit" : "Save"}
+                    {saveEdit ? "🖊️ Edit" : "☑️ Save"}
                 </button>
                 <button className='btns' onClick={() => handleDelete(item.id)}>Delete</button>
             </div>
