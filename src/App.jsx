@@ -3,21 +3,28 @@ import { database } from './firestore';
 import './App.css'
 import { addDoc, collection, getDocs } from 'firebase/firestore';
 import Values from './components/Values';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItems } from './redux/ItemsSlice';
 
 function App() {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState([])
     const [newItem, setNewItem] = useState("");
 
-    const value = collection(database, "firereact1")
+    const dispatch = useDispatch()
 
+    
+    const value = collection(database, "firereact1")
+    
+    let item00 = useSelector(state => state.items)
     useEffect(() => {
         const getData = async () => {
             const {docs} = await getDocs(value)
             let allData = docs.map(doc => {
                 return { ...doc.data(), id: doc.id}
             })
-
-            setItems(allData)
+            
+            dispatch(addItems(allData))
+            setItems(item00)
         }
         getData()
     })
